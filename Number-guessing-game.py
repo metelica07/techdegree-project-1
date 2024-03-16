@@ -1,11 +1,15 @@
 
 import random
 
+high_score = 0
+
 def start_game():
     print("------------------------------------------")
     print(" Welcome to the Number Guessing game!")
     print("------------------------------------------")
-    
+    global high_score
+    if high_score != 0:
+        print("Current high score is {} Good luck!".format(high_score))
     random_number = random.randrange(1, 11)
     total_attempts = 0
     while True:
@@ -21,6 +25,9 @@ def start_game():
                 total_attempts += 1
             else:
                 print("You got it! It took you {} tries".format(total_attempts))
+                if total_attempts < high_score or high_score == 0:
+                    print("Congrats! It is new high score {}".format(total_attempts))
+                    high_score = total_attempts
                 answer = input("Do you want to play again? (Yes/No) ").lower()
                 if answer == "yes" or answer == "y" :
                     start_game()
